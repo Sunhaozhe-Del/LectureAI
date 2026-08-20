@@ -1,0 +1,14 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>LectureAI</title><style>
+*{box-sizing:border-box}body{width:330px;margin:0;padding:18px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;background:#f5f5f7;color:#1d1d1f}.brand{font-size:24px;font-weight:700;letter-spacing:-.8px}.status{margin:4px 0 16px;color:#16a05d;font-size:12px}.card{background:#fff;border:1px solid #e6e6e8;border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.04)}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:9px 0}.label{font-size:13px}.select{border:1px solid #d2d2d7;border-radius:10px;background:#fff;padding:8px 10px;min-width:150px;font-size:13px}.range{width:130px}.value{font-size:12px;color:#6e6e73;width:36px;text-align:right}.footer{text-align:center;color:#86868b;font-size:11px;margin-top:14px}.toggle{accent-color:#0071e3}.small{font-size:11px;color:#86868b;line-height:1.45;margin-top:6px}</style></head><body>
+<div class="brand">LectureAI</div><div class="status">● Core v7.5 · Local AI connected</div>
+<div class="card"><div class="row"><span class="label">自动翻译</span><input class="toggle" type="checkbox" id="enabled" checked></div></div>
+<div class="card">
+<div class="row"><span class="label">翻译语言</span><select class="select" id="language"><option value="zh">简体中文</option><option value="en">English</option><option value="vi">Tiếng Việt</option></select></div>
+<div class="row"><span class="label">字幕大小</span><div><input class="range" type="range" id="fontSize" min="14" max="32" value="20"><span class="value" id="fontSizeValue">20px</span></div></div>
+<div class="row"><span class="label">翻译模式</span><select class="select" id="mode"><option value="fast">Fast</option><option value="accurate">Accurate</option></select></div>
+</div>
+<div class="card"><div class="row"><span class="label">课程模式</span><select class="select" id="course">
+<option value="general">General</option><option value="mathematics">Mathematics / Calculus</option><option value="physics">Physics</option><option value="chemistry">Chemistry</option><option value="biology">Biology</option><option value="computer_science">Computer Science</option><option value="electrical_engineering">Electrical Engineering</option><option value="engineering">Engineering</option><option value="statistics">Statistics / Data Science</option><option value="economics">Economics</option><option value="business">Business / Management</option><option value="accounting_finance">Accounting / Finance</option><option value="law">Law</option><option value="psychology">Psychology</option><option value="medicine">Medicine / Health</option><option value="architecture_design">Architecture / Design</option>
+</select></div><div class="small">课程模式会同时影响实时翻译、专业术语和课后 AI 分析。</div></div>
+<div class="footer">LectureAI Core · v7.0</div>
+<script src="popup.js"></script></body></html>
