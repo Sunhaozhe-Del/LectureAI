@@ -899,15 +899,19 @@ button,a,input{ -webkit-tap-highlight-color:transparent }
 
 <div class="modal" id="authModal">
   <div class="modal-box">
-    <div class="modal-row"><button class="close" onclick="closeAuth()">×</button></div>
+    <div class="modal-row"><button class="close" type="button" onclick="closeAuth()">×</button></div>
     <h3 id="modalTitle">Create your account</h3>
     <p id="modalText">Start using LectureAI today.</p>
 
     <input id="authName" type="text" placeholder="Name (optional)" autocomplete="name">
     <input id="authEmail" type="email" placeholder="Email address" autocomplete="email">
-    <input id="authPassword" type="password" placeholder="Password (minimum 6 characters)" autocomplete="new-password">
+    <input id="authPassword" type="password" placeholder="Password (minimum 6 characters)" autocomplete="current-password">
 
-    <button id="authSubmit" class="btn btn-blue" style="width:100%;padding:12px" onclick="submitAuth()">Create account</button>
+    <button id="authSubmit" type="button" class="btn btn-blue" style="width:100%;padding:12px" onclick="submitAuth()">Create account</button>
+
+    <button id="forgotPassword" type="button"
+      style="display:none;border:0;background:none;color:#0071e3;font-weight:600;cursor:pointer;width:100%;margin-top:12px"
+      onclick="sendResetEmail()">Forgot password?</button>
 
     <div id="authMessage" style="margin-top:12px;font-size:13px;line-height:1.5"></div>
 
@@ -920,107 +924,362 @@ button,a,input{ -webkit-tap-highlight-color:transparent }
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/supabase-config.js"></script>
-<script src="/auth.js"></script>
 <script>
-const modal=document.getElementById('authModal');
-function openAuth(type){
-  document.getElementById('modalTitle').textContent=type==='login'?'Welcome back':'Create your account';
-  document.getElementById('modalText').textContent=type==='login'?'Log in to continue using LectureAI.':'Start using LectureAI today.';
-  modal.classList.add('active');
+/*
+  LectureAI authentication
+  This page initializes Supabase directly so the login modal does not depend
+  on a second script redefining openAuth().
+*/
+const SUPABASE_URL = 'https://ujjmlerncdxmshuvebot.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_V3358AdeEDACGORKobwD5w_JOVX7o5B';
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+const modal = document.getElementById('authModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalText = document.getElementById('modalText');
+const authName = document.getElementById('authName');
+const authEmail = document.getElementById('authEmail');
+const authPassword = document.getElementById('authPassword');
+const authSubmit = document.getElementById('authSubmit');
+const authMessage = document.getElementById('authMessage');
+const authSwitchText = document.getElementById('authSwitchText');
+const authSwitch = document.getElementById('authSwitch');
+const forgotPassword = document.getElementById('forgotPassword');
+
+let authMode = 'signup';
+
+function setAuthMessage(message, type = 'error') {
+  authMessage.textContent = message;
+  authMessage.style.color = type === 'success' ? '#16834b' : '#d70015';
 }
-function closeAuth(){modal.classList.remove('active')}
 
-modal.addEventListener('click',e=>{if(e.target===modal)closeAuth()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAuth()});
+function clearAuthMessage() {
+  authMessage.textContent = '';
+}
 
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
+function setAuthMode(type) {
+  authMode = type === 'login' ? 'login' : 'signup';
+  clearAuthMessage();
+
+  const isLogin = authMode === 'login';
+
+  modalTitle.textContent = isLogin ? 'Welcome back' : 'Create your account';
+  modalText.textContent = isLogin
+    ? 'Log in to continue using LectureAI.'
+    : 'Start using LectureAI today.';
+
+  authName.style.display = isLogin ? 'none' : 'block';
+  authPassword.autocomplete = isLogin ? 'current-password' : 'new-password';
+
+  authSubmit.textContent = isLogin ? 'Log in' : 'Create account';
+  forgotPassword.style.display = isLogin ? 'block' : 'none';
+
+  authSwitchText.textContent = isLogin
+    ? "Don't have an account?"
+    : 'Already have an account?';
+
+  authSwitch.textContent = isLogin ? 'Create account' : 'Log in';
+}
+
+function openAuth(type = 'signup') {
+  setAuthMode(type);
+  modal.classList.add('active');
+
+  setTimeout(() => {
+    (authMode === 'login' ? authEmail : authName).focus();
+  }, 50);
+}
+
+function closeAuth() {
+  modal.classList.remove('active');
+  clearAuthMessage();
+}
+
+function toggleAuthMode() {
+  setAuthMode(authMode === 'login' ? 'signup' : 'login');
+}
+
+async function submitAuth() {
+  clearAuthMessage();
+
+  const email = authEmail.value.trim();
+  const password = authPassword.value;
+
+  if (!email) {
+    setAuthMessage('Please enter your email address.');
+    authEmail.focus();
+    return;
+  }
+
+  if (!password || password.length < 6) {
+    setAuthMessage('Password must be at least 6 characters.');
+    authPassword.focus();
+    return;
+  }
+
+  authSubmit.disabled = true;
+  authSubmit.style.opacity = '.65';
+  authSubmit.textContent = authMode === 'login' ? 'Logging in…' : 'Creating account…';
+
+  try {
+    if (authMode === 'login') {
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) throw error;
+
+      if (!data.session) {
+        throw new Error('Login succeeded but no session was returned.');
+      }
+
+      setAuthMessage('Login successful. Opening your dashboard…', 'success');
+
+      setTimeout(() => {
+        window.location.href = '/dashboard.html';
+      }, 300);
+
+      return;
+    }
+
+    const name = authName.value.trim();
+
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name || null
+        },
+        emailRedirectTo: `${window.location.origin}/`
+      }
+    });
+
+    if (error) throw error;
+
+    /*
+      With "Confirm email" enabled in Supabase, session is normally null here.
+      The user must click the verification email first.
+    */
+    if (data.session) {
+      setAuthMessage('Account created. Opening your dashboard…', 'success');
+      setTimeout(() => {
+        window.location.href = '/dashboard.html';
+      }, 300);
+    } else {
+      setAuthMessage(
+        'Account created. Check your email and click the verification link to continue.',
+        'success'
+      );
+    }
+  } catch (error) {
+    console.error('LectureAI auth error:', error);
+
+    let message = error?.message || 'Something went wrong. Please try again.';
+
+    if (message.toLowerCase().includes('invalid login credentials')) {
+      message = 'Incorrect email or password.';
+    } else if (message.toLowerCase().includes('email not confirmed')) {
+      message = 'Please verify your email first, then log in again.';
+    } else if (message.toLowerCase().includes('user already registered')) {
+      message = 'This email is already registered. Click Log in below.';
+    }
+
+    setAuthMessage(message);
+  } finally {
+    authSubmit.disabled = false;
+    authSubmit.style.opacity = '1';
+    authSubmit.textContent = authMode === 'login' ? 'Log in' : 'Create account';
+  }
+}
+
+async function sendResetEmail() {
+  clearAuthMessage();
+
+  const email = authEmail.value.trim();
+
+  if (!email) {
+    setAuthMessage('Enter your email address first.');
+    authEmail.focus();
+    return;
+  }
+
+  forgotPassword.disabled = true;
+
+  try {
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password.html`
+    });
+
+    if (error) throw error;
+
+    setAuthMessage(
+      'Password reset email sent. Check your inbox.',
+      'success'
+    );
+  } catch (error) {
+    console.error('Password reset error:', error);
+    setAuthMessage(error?.message || 'Could not send the reset email.');
+  } finally {
+    forgotPassword.disabled = false;
+  }
+}
+
+modal.addEventListener('click', e => {
+  if (e.target === modal) closeAuth();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeAuth();
+
+  if (e.key === 'Enter' && modal.classList.contains('active')) {
+    const tag = document.activeElement?.tagName?.toLowerCase();
+    if (tag === 'input') submitAuth();
+  }
+});
+
+/*
+  If the user arrives here after clicking the Supabase email verification link,
+  Supabase restores the session. Send verified users directly to the dashboard.
+*/
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' && session) {
+    window.location.href = '/dashboard.html';
+  }
+});
+
+/*
+  If the user is already logged in and opens the homepage, take them to the app.
+*/
+(async () => {
+  try {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+
+    if (session) {
+      window.location.href = '/dashboard.html';
+    }
+  } catch (error) {
+    console.warn('Could not restore Supabase session:', error);
+  }
+})();
+
+/* Scroll reveal */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
       e.target.classList.add('visible');
       observer.unobserve(e.target);
     }
   });
-},{threshold:.10,rootMargin:"0px 0px -7% 0px"});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}, { threshold: .10, rootMargin: "0px 0px -7% 0px" });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 /* Apple-like nav transition */
-const nav=document.querySelector('.nav');
-let lastScroll=0;
-window.addEventListener('scroll',()=>{
-  const y=window.scrollY;
-  nav.classList.toggle('scrolled',y>8);
-  lastScroll=y;
-},{passive:true});
+const nav = document.querySelector('.nav');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 8);
+}, { passive: true });
 
 /* Subtle pointer parallax for premium cards */
-if(window.matchMedia('(pointer:fine)').matches){
-  document.querySelectorAll('.feature,.pack-card,.device-card,.price').forEach(card=>{
-    card.addEventListener('pointermove',e=>{
-      const r=card.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5;
-      const y=(e.clientY-r.top)/r.height-.5;
-      card.style.transform=`perspective(900px) rotateX(${(-y*2.2).toFixed(2)}deg) rotateY(${(x*2.2).toFixed(2)}deg) translateY(-3px)`;
+if (window.matchMedia('(pointer:fine)').matches) {
+  document.querySelectorAll('.feature,.pack-card,.device-card,.price').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+
+      card.style.transform =
+        `perspective(900px) rotateX(${(-y * 2.2).toFixed(2)}deg) ` +
+        `rotateY(${(x * 2.2).toFixed(2)}deg) translateY(-3px)`;
     });
-    card.addEventListener('pointerleave',()=>{
-      card.style.transform='';
+
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = '';
     });
   });
 }
 
 /* Tiny tactile click response */
-document.querySelectorAll('button,.btn').forEach(btn=>{
-  btn.addEventListener('pointerdown',()=>btn.style.setProperty('--press','1'));
-  btn.addEventListener('pointerup',()=>btn.style.removeProperty('--press'));
-  btn.addEventListener('pointerleave',()=>btn.style.removeProperty('--press'));
+document.querySelectorAll('button,.btn').forEach(btn => {
+  btn.addEventListener('pointerdown', () => btn.style.setProperty('--press', '1'));
+  btn.addEventListener('pointerup', () => btn.style.removeProperty('--press'));
+  btn.addEventListener('pointerleave', () => btn.style.removeProperty('--press'));
 });
 
-
 /* Cinematic story scroll */
-const story=document.querySelector('.story');
-const storyWindow=document.querySelector('.story-window');
-const storyCopy=document.querySelector('.story-copy');
-const progress=document.querySelector('.scroll-progress i');
+const story = document.querySelector('.story');
+const storyWindow = document.querySelector('.story-window');
+const storyCopy = document.querySelector('.story-copy');
+const progress = document.querySelector('.scroll-progress i');
 
-function clamp(v,min,max){return Math.min(max,Math.max(min,v))}
-function updateMotion(){
-  const y=window.scrollY;
-  const doc=document.documentElement;
-  const total=doc.scrollHeight-window.innerHeight;
-  progress.style.width=(total>0?(y/total)*100:0)+'%';
+function clamp(v, min, max) {
+  return Math.min(max, Math.max(min, v));
+}
 
-  if(story && storyWindow){
-    const r=story.getBoundingClientRect();
-    const range=Math.max(1,story.offsetHeight-window.innerHeight);
-    const p=clamp(-r.top/range,0,1);
-    const scale=1.02-p*.11;
-    const opacity=1-clamp((p-.72)/.28,0,1)*.35;
-    const blur=clamp((p-.78)/.22,0,1)*2;
-    storyWindow.style.transform=`translate3d(0,${150-p*18}px,0) scale(${scale})`;
-    storyWindow.style.opacity=opacity;
-    storyWindow.style.filter=`blur(${blur}px)`;
-    if(storyCopy){
-      storyCopy.style.transform=`translate3d(0,${-p*42}px,0)`;
-      storyCopy.style.opacity=1-clamp((p-.6)/.4,0,1);
+function updateMotion() {
+  const y = window.scrollY;
+  const doc = document.documentElement;
+  const total = doc.scrollHeight - window.innerHeight;
+
+  if (progress) {
+    progress.style.width = (total > 0 ? (y / total) * 100 : 0) + '%';
+  }
+
+  if (story && storyWindow) {
+    const r = story.getBoundingClientRect();
+    const range = Math.max(1, story.offsetHeight - window.innerHeight);
+    const p = clamp(-r.top / range, 0, 1);
+
+    const scale = 1.02 - p * .11;
+    const opacity = 1 - clamp((p - .72) / .28, 0, 1) * .35;
+    const blur = clamp((p - .78) / .22, 0, 1) * 2;
+
+    storyWindow.style.transform =
+      `translate3d(0,${150 - p * 18}px,0) scale(${scale})`;
+    storyWindow.style.opacity = opacity;
+    storyWindow.style.filter = `blur(${blur}px)`;
+
+    if (storyCopy) {
+      storyCopy.style.transform = `translate3d(0,${-p * 42}px,0)`;
+      storyCopy.style.opacity = 1 - clamp((p - .6) / .4, 0, 1);
     }
   }
 }
-window.addEventListener('scroll',updateMotion,{passive:true});
-window.addEventListener('resize',updateMotion);
+
+window.addEventListener('scroll', updateMotion, { passive: true });
+window.addEventListener('resize', updateMotion);
 updateMotion();
 
-const subtitles=[
-  ['复合函数的导数由链式法则给出。','The derivative of a composite function is given by the chain rule.'],
-  ['首先确定外函数和内函数。','First identify the outer and inner functions.'],
-  ['然后分别求导，再将它们相乘。','Then differentiate each one and multiply them together.'],
-  ['这一步在考试中非常重要。','This step is important in an exam.']
+/* Demo subtitles */
+const subtitles = [
+  ['复合函数的导数由链式法则给出。',
+   'The derivative of a composite function is given by the chain rule.'],
+  ['首先确定外函数和内函数。',
+   'First identify the outer and inner functions.'],
+  ['然后分别求导，再将它们相乘。',
+   'Then differentiate each one and multiply them together.'],
+  ['这一步在考试中非常重要。',
+   'This step is important in an exam.']
 ];
-let i=0;
-setInterval(()=>{
-  i=(i+1)%subtitles.length;
-  document.getElementById('liveSubtitle').textContent=subtitles[i][0];
-  document.getElementById('detectedText').textContent=subtitles[i][1];
-},3200);
+
+let subtitleIndex = 0;
+
+setInterval(() => {
+  subtitleIndex = (subtitleIndex + 1) % subtitles.length;
+
+  const liveSubtitle = document.getElementById('liveSubtitle');
+  const detectedText = document.getElementById('detectedText');
+
+  if (liveSubtitle) liveSubtitle.textContent = subtitles[subtitleIndex][0];
+  if (detectedText) detectedText.textContent = subtitles[subtitleIndex][1];
+}, 3200);
 </script>
 </body>
 </html>
