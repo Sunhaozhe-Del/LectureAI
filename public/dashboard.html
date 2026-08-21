@@ -4,159 +4,1532 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LectureAI — Dashboard</title>
+
 <style>
-:root{--blue:#0071e3;--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--line:#e5e5ea;--green:#18864b;--red:#d93025}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",sans-serif}
-button,input{font:inherit}button{cursor:pointer}.nav{height:64px;background:rgba(255,255,255,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:flex;align-items:center}
-.navin{max-width:1180px;width:calc(100% - 32px);margin:auto;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:750;font-size:18px}.actions{display:flex;align-items:center;gap:10px}.btn{border:0;border-radius:999px;padding:9px 15px;font-weight:650}.outline{background:#fff;border:1px solid #d2d2d7}.blue{background:var(--blue);color:#fff}
-.layout{max-width:1180px;width:calc(100% - 32px);margin:28px auto;display:grid;grid-template-columns:220px 1fr;gap:22px}
-.sidebar{background:#fff;border:1px solid var(--line);border-radius:20px;padding:10px;height:max-content;position:sticky;top:84px}
-.tab{width:100%;text-align:left;border:0;background:transparent;padding:11px 12px;border-radius:11px;color:#424245;font-weight:600}.tab.active{background:#f2f2f7;color:#111}
-main{min-width:0}.hero{margin-bottom:18px}.eyebrow{color:var(--muted);font-size:14px}.hero h1{font-size:44px;letter-spacing:-2px;margin:4px 0}.muted{color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.035)}.stat strong{display:block;font-size:26px;margin-top:6px}.section{margin-top:16px}
-.progress{height:8px;background:#e5e5ea;border-radius:99px;overflow:hidden;margin:12px 0 8px}.progress i{display:block;height:100%;background:var(--blue);width:0}
-.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;border-top:1px solid #eee}.row:first-child{border-top:0}.pill{background:#f2f2f7;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:650}
-.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.plan{position:relative}.plan.featured{border:2px solid var(--blue)}.plan h3{margin:0 0 5px}.price{font-size:30px;font-weight:750;margin:12px 0}.plan ul{padding-left:18px;color:#515154;line-height:1.9;font-size:14px}.plan button{width:100%;margin-top:10px}
-.form{display:grid;gap:10px}.form input{padding:12px 13px;border:1px solid #d2d2d7;border-radius:11px}.message{font-size:13px;min-height:20px}.success{color:var(--green)}.error{color:var(--red)}
-@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto}.tab{white-space:nowrap;width:auto}.grid{grid-template-columns:repeat(2,1fr)}.plan-grid{grid-template-columns:1fr}}
-@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.hero h1{font-size:36px}.actions span{display:none}}
+:root{
+  --blue:#0071e3;
+  --bg:#f5f5f7;
+  --card:#fff;
+  --text:#1d1d1f;
+  --muted:#6e6e73;
+  --line:#e5e5ea;
+  --green:#18864b;
+  --red:#d93025;
+  --orange:#b45309;
+}
+
+*{
+  box-sizing:border-box
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",sans-serif
+}
+
+button,input{
+  font:inherit
+}
+
+button{
+  cursor:pointer
+}
+
+.nav{
+  height:64px;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center
+}
+
+.navin{
+  max-width:1180px;
+  width:calc(100% - 32px);
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+.brand{
+  font-weight:750;
+  font-size:18px
+}
+
+.actions{
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+
+.btn{
+  border:0;
+  border-radius:999px;
+  padding:9px 15px;
+  font-weight:650
+}
+
+.outline{
+  background:#fff;
+  border:1px solid #d2d2d7
+}
+
+.blue{
+  background:var(--blue);
+  color:#fff
+}
+
+.layout{
+  max-width:1180px;
+  width:calc(100% - 32px);
+  margin:28px auto;
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:22px
+}
+
+.sidebar{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:10px;
+  height:max-content;
+  position:sticky;
+  top:84px
+}
+
+.tab{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  padding:11px 12px;
+  border-radius:11px;
+  color:#424245;
+  font-weight:600
+}
+
+.tab.active{
+  background:#f2f2f7;
+  color:#111
+}
+
+main{
+  min-width:0
+}
+
+.hero{
+  margin-bottom:18px
+}
+
+.eyebrow{
+  color:var(--muted);
+  font-size:14px
+}
+
+.hero h1{
+  font-size:44px;
+  letter-spacing:-2px;
+  margin:4px 0
+}
+
+.muted{
+  color:var(--muted)
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 8px 28px rgba(0,0,0,.035)
+}
+
+.stat strong{
+  display:block;
+  font-size:26px;
+  margin-top:6px
+}
+
+.section{
+  margin-top:16px
+}
+
+.progress{
+  height:8px;
+  background:#e5e5ea;
+  border-radius:99px;
+  overflow:hidden;
+  margin:12px 0 8px
+}
+
+.progress i{
+  display:block;
+  height:100%;
+  background:var(--blue);
+  width:0;
+  transition:width .4s ease
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:15px 0;
+  border-top:1px solid #eee
+}
+
+.row:first-child{
+  border-top:0
+}
+
+.pill{
+  background:#f2f2f7;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:12px;
+  font-weight:650;
+  white-space:nowrap
+}
+
+.pill.green{
+  background:#e8f6ee;
+  color:var(--green)
+}
+
+.pill.orange{
+  background:#fff4df;
+  color:var(--orange)
+}
+
+.trial-info{
+  margin-top:8px;
+  font-size:13px;
+  line-height:1.5
+}
+
+.plan-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px
+}
+
+.plan{
+  position:relative
+}
+
+.plan.featured{
+  border:2px solid var(--blue)
+}
+
+.plan h3{
+  margin:0 0 5px
+}
+
+.price{
+  font-size:30px;
+  font-weight:750;
+  margin:12px 0
+}
+
+.plan ul{
+  padding-left:18px;
+  color:#515154;
+  line-height:1.9;
+  font-size:14px
+}
+
+.plan button{
+  width:100%;
+  margin-top:10px
+}
+
+.form{
+  display:grid;
+  gap:10px
+}
+
+.form input{
+  padding:12px 13px;
+  border:1px solid #d2d2d7;
+  border-radius:11px
+}
+
+.message{
+  font-size:13px;
+  min-height:20px
+}
+
+.success{
+  color:var(--green)
+}
+
+.error{
+  color:var(--red)
+}
+
+.loading{
+  color:var(--muted);
+  padding:10px 0
+}
+
+.empty{
+  color:var(--muted);
+  padding:10px 0
+}
+
+.error-card{
+  background:#fff;
+  border:1px solid #f0caca;
+  color:var(--red);
+  border-radius:16px;
+  padding:15px;
+  margin-bottom:15px
+}
+
+@media(max-width:900px){
+  .layout{
+    grid-template-columns:1fr
+  }
+
+  .sidebar{
+    position:static;
+    display:flex;
+    overflow:auto
+  }
+
+  .tab{
+    white-space:nowrap;
+    width:auto
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr)
+  }
+
+  .plan-grid{
+    grid-template-columns:1fr
+  }
+}
+
+@media(max-width:600px){
+  .grid{
+    grid-template-columns:1fr 1fr
+  }
+
+  .hero h1{
+    font-size:36px
+  }
+
+  .actions span{
+    display:none
+  }
+}
 </style>
 </head>
+
 <body>
-<nav class="nav"><div class="navin"><div class="brand">✦ LectureAI</div><div class="actions"><span id="email" class="muted"></span><button id="logout" class="btn outline">Log out</button></div></div></nav>
+
+<nav class="nav">
+  <div class="navin">
+    <div class="brand">✦ LectureAI</div>
+
+    <div class="actions">
+      <span id="email" class="muted"></span>
+      <button id="logout" class="btn outline">Log out</button>
+    </div>
+  </div>
+</nav>
+
 
 <div class="layout">
-<aside class="sidebar">
-<button class="tab active" data-tab="overview">Overview</button>
-<button class="tab" data-tab="lectures">My lectures</button>
-<button class="tab" data-tab="plans">Plan & billing</button>
-<button class="tab" data-tab="invite">Beta invite</button>
-<button class="tab" data-tab="account">Account</button>
-</aside>
 
-<main>
-<section id="overview" class="panel">
-<div class="hero"><div class="eyebrow">Your learning space</div><h1 id="welcome">Welcome back.</h1><p class="muted">Your LectureAI account, usage and study history in one place.</p></div>
-<div class="grid">
-<div class="card stat"><span class="muted">Plan</span><strong id="plan">Free</strong></div>
-<div class="card stat"><span class="muted">Minutes used</span><strong id="minutes">0</strong></div>
-<div class="card stat"><span class="muted">Lectures</span><strong id="lectureCount">0</strong></div>
-<div class="card stat"><span class="muted">Trial</span><strong id="trial">—</strong></div>
-</div>
-<div class="card section"><b>Monthly usage</b><div class="progress"><i id="usageBar"></i></div><div id="usageText" class="muted">0 / 60 minutes</div></div>
-<div class="card section"><h2>Recent lectures</h2><div id="recent"><p class="muted">No saved lectures yet.</p></div></div>
-</section>
+  <aside class="sidebar">
 
-<section id="lectures" class="panel" hidden>
-<div class="hero"><div class="eyebrow">Study history</div><h1>My lectures</h1><p class="muted">Saved lecture records and study packs.</p></div>
-<div class="card"><div id="allLectures"><p class="muted">No lectures saved yet.</p></div></div>
-</section>
+    <button class="tab active" data-tab="overview">
+      Overview
+    </button>
 
-<section id="plans" class="panel" hidden>
-<div class="hero"><div class="eyebrow">Pricing</div><h1>Choose your plan.</h1><p class="muted">Billing is ready to connect. Paid checkout requires your payment provider keys before real charges can be enabled.</p></div>
-<div class="plan-grid">
-<div class="card plan"><h3>Free</h3><div class="price">A$0 <small>/ month</small></div><ul><li>60 minutes / month</li><li>Basic translation</li><li>Lecture history</li><li>Basic study tools</li></ul><button class="btn outline" disabled>Current plan</button></div>
-<div class="card plan featured"><h3>Student</h3><div class="price">A$12.99 <small>/ month</small></div><ul><li>20 hours / month</li><li>Real-time translation</li><li>AI summaries</li><li>AI quizzes</li><li>Technical vocabulary</li><li>PDF study packs</li></ul><button class="btn blue" onclick="alert('Student checkout will be enabled after Stripe/payment setup.')">Choose Student</button></div>
-<div class="card plan"><h3>Pro</h3><div class="price">A$19.99 <small>/ month</small></div><ul><li>50 hours / month</li><li>Higher AI limits</li><li>Advanced study packs</li><li>Priority processing</li></ul><button class="btn outline" onclick="alert('Pro checkout will be enabled after Stripe/payment setup.')">Choose Pro</button></div>
-</div>
-</section>
+    <button class="tab" data-tab="lectures">
+      My lectures
+    </button>
 
-<section id="invite" class="panel" hidden>
-<div class="hero"><div class="eyebrow">Private beta</div><h1>Have an invite code?</h1><p class="muted">Enter a code from the LectureAI team to unlock a trial.</p></div>
-<div class="card"><div class="form"><input id="inviteCode" placeholder="e.g. BETA2026"><button id="redeem" class="btn blue">Redeem code</button><div id="inviteMsg" class="message"></div></div></div>
-</section>
+    <button class="tab" data-tab="plans">
+      Plan & billing
+    </button>
 
-<section id="account" class="panel" hidden>
-<div class="hero"><div class="eyebrow">Account</div><h1>Account settings</h1></div>
-<div class="card">
-<div class="form">
-<label>Display name<input id="displayName" maxlength="80" placeholder="Your name"></label>
-<label>Email<input id="accountEmail" disabled></label>
-<button id="saveProfile" class="btn blue">Save changes</button>
-<div id="profileMsg" class="message"></div>
+    <button class="tab" data-tab="invite">
+      Beta invite
+    </button>
+
+    <button class="tab" data-tab="account">
+      Account
+    </button>
+
+  </aside>
+
+
+  <main>
+
+    <!-- OVERVIEW -->
+
+    <section id="overview" class="panel">
+
+      <div class="hero">
+
+        <div class="eyebrow">
+          Your learning space
+        </div>
+
+        <h1 id="welcome">
+          Welcome back.
+        </h1>
+
+        <p class="muted">
+          Your LectureAI account, usage and study history in one place.
+        </p>
+
+      </div>
+
+
+      <div id="loadError"></div>
+
+
+      <div class="grid">
+
+        <div class="card stat">
+
+          <span class="muted">
+            Plan
+          </span>
+
+          <strong id="plan">
+            Free
+          </strong>
+
+        </div>
+
+
+        <div class="card stat">
+
+          <span class="muted">
+            Minutes used
+          </span>
+
+          <strong id="minutes">
+            0
+          </strong>
+
+        </div>
+
+
+        <div class="card stat">
+
+          <span class="muted">
+            Lectures
+          </span>
+
+          <strong id="lectureCount">
+            0
+          </strong>
+
+        </div>
+
+
+        <div class="card stat">
+
+          <span class="muted">
+            Trial
+          </span>
+
+          <strong id="trial">
+            —
+          </strong>
+
+          <div id="trialInfo" class="trial-info muted"></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="card section">
+
+        <b>
+          Monthly usage
+        </b>
+
+        <div class="progress">
+          <i id="usageBar"></i>
+        </div>
+
+        <div id="usageText" class="muted">
+          0 / 60 minutes
+        </div>
+
+      </div>
+
+
+      <div class="card section">
+
+        <h2>
+          Recent lectures
+        </h2>
+
+        <div id="recent">
+          <p class="empty">
+            No saved lectures yet.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- LECTURES -->
+
+    <section id="lectures" class="panel" hidden>
+
+      <div class="hero">
+
+        <div class="eyebrow">
+          Study history
+        </div>
+
+        <h1>
+          My lectures
+        </h1>
+
+        <p class="muted">
+          Saved lecture records and study packs.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div id="allLectures">
+          <p class="empty">
+            No lectures saved yet.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PLANS -->
+
+    <section id="plans" class="panel" hidden>
+
+      <div class="hero">
+
+        <div class="eyebrow">
+          Pricing
+        </div>
+
+        <h1>
+          Choose your plan.
+        </h1>
+
+        <p class="muted">
+          Billing is ready to connect. Paid checkout requires your payment provider keys before real charges can be enabled.
+        </p>
+
+      </div>
+
+
+      <div class="plan-grid">
+
+        <div class="card plan">
+
+          <h3>
+            Free
+          </h3>
+
+          <div class="price">
+            A$0 <small>/ month</small>
+          </div>
+
+          <ul>
+            <li>60 minutes / month</li>
+            <li>Basic translation</li>
+            <li>Lecture history</li>
+            <li>Basic study tools</li>
+          </ul>
+
+          <button class="btn outline" disabled>
+            Current plan
+          </button>
+
+        </div>
+
+
+        <div class="card plan featured">
+
+          <h3>
+            Student
+          </h3>
+
+          <div class="price">
+            A$12.99 <small>/ month</small>
+          </div>
+
+          <ul>
+            <li>20 hours / month</li>
+            <li>Real-time translation</li>
+            <li>AI summaries</li>
+            <li>AI quizzes</li>
+            <li>Technical vocabulary</li>
+            <li>PDF study packs</li>
+          </ul>
+
+          <button class="btn blue" onclick="alert('Student checkout will be enabled after Stripe/payment setup.')">
+            Choose Student
+          </button>
+
+        </div>
+
+
+        <div class="card plan">
+
+          <h3>
+            Pro
+          </h3>
+
+          <div class="price">
+            A$19.99 <small>/ month</small>
+          </div>
+
+          <ul>
+            <li>50 hours / month</li>
+            <li>Higher AI limits</li>
+            <li>Advanced study packs</li>
+            <li>Priority processing</li>
+          </ul>
+
+          <button class="btn outline" onclick="alert('Pro checkout will be enabled after Stripe/payment setup.')">
+            Choose Pro
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- INVITE -->
+
+    <section id="invite" class="panel" hidden>
+
+      <div class="hero">
+
+        <div class="eyebrow">
+          Private beta
+        </div>
+
+        <h1>
+          Have an invite code?
+        </h1>
+
+        <p class="muted">
+          Enter a code from the LectureAI team to unlock a trial.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="form">
+
+          <input
+            id="inviteCode"
+            placeholder="e.g. BETA2026"
+          >
+
+          <button
+            id="redeem"
+            class="btn blue"
+          >
+            Redeem code
+          </button>
+
+          <div
+            id="inviteMsg"
+            class="message"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ACCOUNT -->
+
+    <section id="account" class="panel" hidden>
+
+      <div class="hero">
+
+        <div class="eyebrow">
+          Account
+        </div>
+
+        <h1>
+          Account settings
+        </h1>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="form">
+
+          <label>
+            Display name
+
+            <input
+              id="displayName"
+              maxlength="80"
+              placeholder="Your name"
+            >
+
+          </label>
+
+
+          <label>
+            Email
+
+            <input
+              id="accountEmail"
+              disabled
+            >
+
+          </label>
+
+
+          <button
+            id="saveProfile"
+            class="btn blue"
+          >
+            Save changes
+          </button>
+
+
+          <div
+            id="profileMsg"
+            class="message"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="card section">
+
+        <h3>
+          Security
+        </h3>
+
+        <button
+          id="resetBtn"
+          class="btn outline"
+        >
+          Send password reset email
+        </button>
+
+        <div
+          id="resetMsg"
+          class="message"
+        ></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
 </div>
-</div>
-<div class="card section"><h3>Security</h3><button id="resetBtn" class="btn outline">Send password reset email</button><div id="resetMsg" class="message"></div></div>
-</section>
-</main>
-</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="/supabase-config.js"></script>
+
+
 <script>
-const sb=window.supabase.createClient(window.LECTUREAI_SUPABASE_URL,window.LECTUREAI_SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
-let session=null, profile=null;
 
-const planLimits={free:60,student:1200,pro:3000};
+const sb = window.supabase.createClient(
+  window.LECTUREAI_SUPABASE_URL,
+  window.LECTUREAI_SUPABASE_KEY,
+  {
+    auth:{
+      persistSession:true,
+      autoRefreshToken:true,
+      detectSessionInUrl:true
+    }
+  }
+);
 
-function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function prettyPlan(p){return (p||"free").replace(/^./,x=>x.toUpperCase());}
-function setMsg(id,text,ok=false){const e=document.getElementById(id);e.textContent=text;e.className="message "+(ok?"success":"error");}
+
+let session = null;
+let profile = null;
+
+
+/*
+  Monthly limits
+*/
+const planLimits = {
+  free:60,
+  student:1200,
+  pro:3000
+};
+
+
+/*
+  Escape HTML
+*/
+function esc(v){
+
+  return String(v ?? "")
+    .replace(/[&<>"']/g,c=>({
+
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+
+    }[c]));
+
+}
+
+
+/*
+  Format plan name
+*/
+function prettyPlan(p){
+
+  return (p || "free")
+    .replace(/^./,x=>x.toUpperCase());
+
+}
+
+
+/*
+  Message helper
+*/
+function setMsg(id,text,ok=false){
+
+  const e = document.getElementById(id);
+
+  e.textContent = text;
+
+  e.className =
+    "message " +
+    (ok ? "success" : "error");
+
+}
+
+
+/*
+  Navigation
+*/
 function switchTab(name){
- document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===name));
- document.querySelectorAll(".panel").forEach(x=>x.hidden=x.id!==name);
-}
-document.querySelectorAll(".tab").forEach(x=>x.onclick=()=>switchTab(x.dataset.tab));
 
+  document
+    .querySelectorAll(".tab")
+    .forEach(x=>{
+      x.classList.toggle(
+        "active",
+        x.dataset.tab === name
+      );
+    });
+
+
+  document
+    .querySelectorAll(".panel")
+    .forEach(x=>{
+      x.hidden = x.id !== name;
+    });
+
+}
+
+
+document
+  .querySelectorAll(".tab")
+  .forEach(x=>{
+    x.onclick = ()=>{
+      switchTab(x.dataset.tab);
+    };
+  });
+
+
+/*
+  Calculate trial status
+*/
+function getTrialStatus(trialEndsAt){
+
+  if(!trialEndsAt){
+
+    return {
+      active:false,
+      expired:false,
+      days:0
+    };
+
+  }
+
+
+  const end = new Date(trialEndsAt);
+  const now = new Date();
+
+  const diff = end.getTime() - now.getTime();
+
+  const days = Math.ceil(
+    diff / (1000 * 60 * 60 * 24)
+  );
+
+
+  return {
+    active:days > 0,
+    expired:days <= 0,
+    days
+  };
+
+}
+
+
+/*
+  Render trial information
+*/
+function renderTrial(plan,trialEndsAt){
+
+  const trialEl =
+    document.getElementById("trial");
+
+  const infoEl =
+    document.getElementById("trialInfo");
+
+
+  if(plan !== "student" || !trialEndsAt){
+
+    trialEl.textContent = "—";
+    infoEl.textContent = "";
+
+    return;
+  }
+
+
+  const status =
+    getTrialStatus(trialEndsAt);
+
+
+  const date =
+    new Date(trialEndsAt)
+      .toLocaleDateString();
+
+
+  if(status.active){
+
+    trialEl.textContent =
+      `${status.days} day${status.days === 1 ? "" : "s"}`;
+
+
+    infoEl.innerHTML =
+      `<span class="pill green">Active</span>
+       <br>
+       Ends ${esc(date)}`;
+
+  }else{
+
+    trialEl.textContent =
+      "Expired";
+
+
+    infoEl.innerHTML =
+      `<span class="pill orange">Expired</span>
+       <br>
+       Ended ${esc(date)}`;
+
+  }
+
+}
+
+
+/*
+  Load dashboard
+*/
 async function load(){
- const r=await sb.auth.getSession(); session=r.data.session;
- if(!session){location.href="/";return;}
- const user=session.user;
- document.getElementById("email").textContent=user.email||"";
- document.getElementById("accountEmail").value=user.email||"";
 
- const p=await sb.from("profiles").select("display_name,plan,trial_ends_at").eq("id",user.id).maybeSingle();
- profile=p.data||{display_name:user.user_metadata?.display_name||user.email?.split("@")[0],plan:"free"};
- const plan=profile.plan||"free";
- document.getElementById("welcome").textContent=`Welcome back, ${profile.display_name||user.email?.split("@")[0]}.`;
- document.getElementById("plan").textContent=prettyPlan(plan);
- document.getElementById("displayName").value=profile.display_name||"";
- document.getElementById("trial").textContent=profile.trial_ends_at?new Date(profile.trial_ends_at).toLocaleDateString():"—";
+  try{
 
- const month=new Date(); month.setDate(1); const monthStart=month.toISOString().slice(0,10);
- const usage=await sb.from("usage_monthly").select("minutes_used").eq("user_id",user.id).eq("month_start",monthStart).maybeSingle();
- const used=Number(usage.data?.minutes_used||0), limit=planLimits[plan]||60;
- document.getElementById("minutes").textContent=used;
- document.getElementById("usageText").textContent=`${used} / ${limit} minutes`;
- document.getElementById("usageBar").style.width=Math.min(100,used/limit*100)+"%";
+    document.getElementById("loadError").innerHTML = "";
 
- const lec=await sb.from("lectures").select("id,title,course,created_at,duration_minutes").order("created_at",{ascending:false}).limit(50);
- const rows=lec.data||[];
- document.getElementById("lectureCount").textContent=rows.length;
- renderLectures(rows);
 
- await sb.from("usage_monthly").upsert({user_id:user.id,month_start:monthStart},{onConflict:"user_id,month_start"});
+    /*
+      Get current session
+    */
+    const r =
+      await sb.auth.getSession();
+
+
+    session =
+      r.data.session;
+
+
+    if(!session){
+
+      location.href="/";
+
+      return;
+    }
+
+
+    const user =
+      session.user;
+
+
+    /*
+      Basic account information
+    */
+    document.getElementById("email")
+      .textContent =
+      user.email || "";
+
+
+    document.getElementById("accountEmail")
+      .value =
+      user.email || "";
+
+
+    /*
+      Get profile
+    */
+    const p =
+      await sb
+        .from("profiles")
+        .select(
+          "display_name,plan,trial_ends_at"
+        )
+        .eq("id",user.id)
+        .maybeSingle();
+
+
+    if(p.error){
+
+      throw p.error;
+
+    }
+
+
+    profile =
+      p.data || {
+
+        display_name:
+          user.user_metadata?.display_name ||
+          user.email?.split("@")[0] ||
+          "Student",
+
+        plan:"free",
+
+        trial_ends_at:null
+
+      };
+
+
+    const plan =
+      profile.plan || "free";
+
+
+    /*
+      Welcome
+    */
+    document.getElementById("welcome")
+      .textContent =
+      `Welcome back, ${
+        profile.display_name ||
+        user.email?.split("@")[0] ||
+        "Student"
+      }.`;
+
+
+
+    /*
+      Plan
+    */
+    document.getElementById("plan")
+      .textContent =
+      prettyPlan(plan);
+
+
+    /*
+      Account name
+    */
+    document.getElementById("displayName")
+      .value =
+      profile.display_name || "";
+
+
+    /*
+      Trial
+    */
+    renderTrial(
+      plan,
+      profile.trial_ends_at
+    );
+
+
+    /*
+      Current month
+    */
+    const month =
+      new Date();
+
+
+    month.setDate(1);
+
+
+    const monthStart =
+      month.toISOString().slice(0,10);
+
+
+    /*
+      Usage
+    */
+    const usage =
+      await sb
+        .from("usage_monthly")
+        .select("minutes_used")
+        .eq("user_id",user.id)
+        .eq("month_start",monthStart)
+        .maybeSingle();
+
+
+    if(usage.error){
+
+      console.warn(
+        "Usage query:",
+        usage.error
+      );
+
+    }
+
+
+    const used =
+      Number(
+        usage.data?.minutes_used || 0
+      );
+
+
+    const limit =
+      planLimits[plan] || 60;
+
+
+    document.getElementById("minutes")
+      .textContent =
+      used;
+
+
+    document.getElementById("usageText")
+      .textContent =
+      `${used} / ${limit} minutes`;
+
+
+    document.getElementById("usageBar")
+      .style.width =
+      Math.min(
+        100,
+        (used / limit) * 100
+      ) + "%";
+
+
+    /*
+      IMPORTANT:
+      Only load lectures belonging
+      to the current user.
+    */
+    const lec =
+      await sb
+        .from("lectures")
+        .select(
+          "id,title,course,created_at,duration_minutes"
+        )
+        .eq("user_id",user.id)
+        .order(
+          "created_at",
+          {ascending:false}
+        )
+        .limit(50);
+
+
+    if(lec.error){
+
+      throw lec.error;
+
+    }
+
+
+    const rows =
+      lec.data || [];
+
+
+    document.getElementById("lectureCount")
+      .textContent =
+      rows.length;
+
+
+    renderLectures(rows);
+
+
+    /*
+      Create monthly usage row
+      if it does not exist.
+    */
+    const upsert =
+      await sb
+        .from("usage_monthly")
+        .upsert(
+          {
+            user_id:user.id,
+            month_start:monthStart
+          },
+          {
+            onConflict:
+              "user_id,month_start"
+          }
+        );
+
+
+    if(upsert.error){
+
+      console.warn(
+        "Usage upsert:",
+        upsert.error
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Dashboard error:",
+      error
+    );
+
+
+    document.getElementById("loadError")
+      .innerHTML =
+      `<div class="error-card">
+        Unable to load some account information.
+        ${esc(error?.message || "")}
+      </div>`;
+
+  }
+
 }
+
+
+/*
+  Render lectures
+*/
 function renderLectures(rows){
- const html=rows.length?rows.map(x=>`<div class="row"><div><b>${esc(x.title||"Untitled lecture")}</b><div class="muted">${esc(x.course||"General")} · ${x.duration_minutes||0} min · ${new Date(x.created_at).toLocaleDateString()}</div></div><span class="pill">Saved</span></div>`).join(""):"<p class='muted'>No lectures saved yet.</p>";
- document.getElementById("recent").innerHTML=html;
- document.getElementById("allLectures").innerHTML=html;
+
+  if(!rows.length){
+
+    const empty =
+      "<p class='empty'>No lectures saved yet.</p>";
+
+    document.getElementById("recent")
+      .innerHTML =
+      empty;
+
+    document.getElementById("allLectures")
+      .innerHTML =
+      empty;
+
+    return;
+  }
+
+
+  const html =
+    rows
+      .map(x=>{
+
+        const title =
+          esc(
+            x.title ||
+            "Untitled lecture"
+          );
+
+
+        const course =
+          esc(
+            x.course ||
+            "General"
+          );
+
+
+        const duration =
+          Number(
+            x.duration_minutes || 0
+          );
+
+
+        const date =
+          x.created_at
+            ? new Date(
+                x.created_at
+              ).toLocaleDateString()
+            : "";
+
+
+        return `
+          <div class="row">
+
+            <div>
+
+              <b>${title}</b>
+
+              <div class="muted">
+                ${course}
+                ·
+                ${duration} min
+                ${date ? " · " + date : ""}
+              </div>
+
+            </div>
+
+            <span class="pill green">
+              Saved
+            </span>
+
+          </div>
+        `;
+
+      })
+      .join("");
+
+
+  document.getElementById("recent")
+    .innerHTML =
+    html;
+
+
+  document.getElementById("allLectures")
+    .innerHTML =
+    html;
+
 }
-document.getElementById("logout").onclick=async()=>{await sb.auth.signOut();location.href="/";};
 
-document.getElementById("saveProfile").onclick=async()=>{
- const display_name=document.getElementById("displayName").value.trim();
- const {error}=await sb.from("profiles").update({display_name}).eq("id",session.user.id);
- setMsg("profileMsg",error?error.message:"Profile updated.",!error);
- if(!error) document.getElementById("welcome").textContent=`Welcome back, ${display_name||session.user.email?.split("@")[0]}.`;
-};
 
-document.getElementById("resetBtn").onclick=async()=>{
- const {error}=await sb.auth.resetPasswordForEmail(session.user.email,{redirectTo:location.origin+"/reset-password.html"});
- setMsg("resetMsg",error?error.message:"If this email is eligible, a reset email has been sent.",!error);
-};
+/*
+  Logout
+*/
+document.getElementById("logout")
+  .onclick =
+  async()=>{
 
-document.getElementById("redeem").onclick=async()=>{
- const code=document.getElementById("inviteCode").value.trim();
- if(!code){setMsg("inviteMsg","Enter an invite code.");return;}
- const {data,error}=await sb.rpc("redeem_invite_code",{p_code:code});
- if(error){setMsg("inviteMsg",error.message);return;}
- if(!data?.success){setMsg("inviteMsg",data?.message||"Invalid or expired code.");return;}
- setMsg("inviteMsg",`Success. Your ${prettyPlan(data.plan)} trial is active until ${new Date(data.trial_ends_at).toLocaleDateString()}.`,true);
- await load();
-};
+    await sb.auth.signOut();
 
+    location.href="/";
+
+  };
+
+
+/*
+  Save profile
+*/
+document.getElementById("saveProfile")
+  .onclick =
+  async()=>{
+
+    if(!session) return;
+
+
+    const display_name =
+      document
+        .getElementById("displayName")
+        .value
+        .trim();
+
+
+    const result =
+      await sb
+        .from("profiles")
+        .update({
+          display_name
+        })
+        .eq(
+          "id",
+          session.user.id
+        );
+
+
+    setMsg(
+      "profileMsg",
+      result.error
+        ? result.error.message
+        : "Profile updated.",
+      !result.error
+    );
+
+
+    if(!result.error){
+
+      document.getElementById("welcome")
+        .textContent =
+        `Welcome back, ${
+          display_name ||
+          session.user.email?.split("@")[0]
+        }.`;
+
+    }
+
+  };
+
+
+/*
+  Password reset
+*/
+document.getElementById("resetBtn")
+  .onclick =
+  async()=>{
+
+    if(!session) return;
+
+
+    const result =
+      await sb
+        .auth
+        .resetPasswordForEmail(
+          session.user.email,
+          {
+            redirectTo:
+              location.origin +
+              "/reset-password.html"
+          }
+        );
+
+
+    setMsg(
+      "resetMsg",
+      result.error
+        ? result.error.message
+        : "If this email is eligible, a reset email has been sent.",
+      !result.error
+    );
+
+  };
+
+
+/*
+  Invite code
+*/
+document.getElementById("redeem")
+  .onclick =
+  async()=>{
+
+    const code =
+      document
+        .getElementById("inviteCode")
+        .value
+        .trim();
+
+
+    if(!code){
+
+      setMsg(
+        "inviteMsg",
+        "Enter an invite code."
+      );
+
+      return;
+
+    }
+
+
+    const result =
+      await sb.rpc(
+        "redeem_invite_code",
+        {
+          p_code:code
+        }
+      );
+
+
+    if(result.error){
+
+      setMsg(
+        "inviteMsg",
+        result.error.message
+      );
+
+      return;
+
+    }
+
+
+    const data =
+      result.data;
+
+
+    if(!data?.success){
+
+      setMsg(
+        "inviteMsg",
+        data?.message ||
+        "Invalid or expired code."
+      );
+
+      return;
+
+    }
+
+
+    setMsg(
+      "inviteMsg",
+      `Success. Your ${
+        prettyPlan(data.plan)
+      } trial is active until ${
+        new Date(
+          data.trial_ends_at
+        ).toLocaleDateString()
+      }.`,
+      true
+    );
+
+
+    await load();
+
+  };
+
+
+/*
+  Start
+*/
 load();
+
 </script>
+
 </body>
 </html>
