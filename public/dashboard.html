@@ -19,22 +19,23 @@
 }
 
 *{
-  box-sizing:border-box
+  box-sizing:border-box;
 }
 
 body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",sans-serif
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",sans-serif;
 }
 
-button,input{
-  font:inherit
+button,
+input{
+  font:inherit;
 }
 
 button{
-  cursor:pointer
+  cursor:pointer;
 }
 
 .nav{
@@ -43,7 +44,7 @@ button{
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--line);
   display:flex;
-  align-items:center
+  align-items:center;
 }
 
 .navin{
@@ -52,35 +53,35 @@ button{
   margin:auto;
   display:flex;
   justify-content:space-between;
-  align-items:center
+  align-items:center;
 }
 
 .brand{
   font-weight:750;
-  font-size:18px
+  font-size:18px;
 }
 
 .actions{
   display:flex;
   align-items:center;
-  gap:10px
+  gap:10px;
 }
 
 .btn{
   border:0;
   border-radius:999px;
   padding:9px 15px;
-  font-weight:650
+  font-weight:650;
 }
 
 .outline{
   background:#fff;
-  border:1px solid #d2d2d7
+  border:1px solid #d2d2d7;
 }
 
 .blue{
   background:var(--blue);
-  color:#fff
+  color:#fff;
 }
 
 .layout{
@@ -89,7 +90,7 @@ button{
   margin:28px auto;
   display:grid;
   grid-template-columns:220px 1fr;
-  gap:22px
+  gap:22px;
 }
 
 .sidebar{
@@ -99,7 +100,7 @@ button{
   padding:10px;
   height:max-content;
   position:sticky;
-  top:84px
+  top:84px;
 }
 
 .tab{
@@ -110,41 +111,41 @@ button{
   padding:11px 12px;
   border-radius:11px;
   color:#424245;
-  font-weight:600
+  font-weight:600;
 }
 
 .tab.active{
   background:#f2f2f7;
-  color:#111
+  color:#111;
 }
 
 main{
-  min-width:0
+  min-width:0;
 }
 
 .hero{
-  margin-bottom:18px
+  margin-bottom:18px;
 }
 
 .eyebrow{
   color:var(--muted);
-  font-size:14px
+  font-size:14px;
 }
 
 .hero h1{
   font-size:44px;
   letter-spacing:-2px;
-  margin:4px 0
+  margin:4px 0;
 }
 
 .muted{
-  color:var(--muted)
+  color:var(--muted);
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:14px
+  gap:14px;
 }
 
 .card{
@@ -152,17 +153,17 @@ main{
   border:1px solid var(--line);
   border-radius:20px;
   padding:20px;
-  box-shadow:0 8px 28px rgba(0,0,0,.035)
+  box-shadow:0 8px 28px rgba(0,0,0,.035);
 }
 
 .stat strong{
   display:block;
   font-size:26px;
-  margin-top:6px
+  margin-top:6px;
 }
 
 .section{
-  margin-top:16px
+  margin-top:16px;
 }
 
 .progress{
@@ -170,7 +171,7 @@ main{
   background:#e5e5ea;
   border-radius:99px;
   overflow:hidden;
-  margin:12px 0 8px
+  margin:12px 0 8px;
 }
 
 .progress i{
@@ -178,7 +179,7 @@ main{
   height:100%;
   background:var(--blue);
   width:0;
-  transition:width .4s ease
+  transition:width .4s ease;
 }
 
 .row{
@@ -187,11 +188,11 @@ main{
   align-items:center;
   gap:12px;
   padding:15px 0;
-  border-top:1px solid #eee
+  border-top:1px solid #eee;
 }
 
 .row:first-child{
-  border-top:0
+  border-top:0;
 }
 
 .pill{
@@ -200,93 +201,88 @@ main{
   padding:5px 9px;
   font-size:12px;
   font-weight:650;
-  white-space:nowrap
+  white-space:nowrap;
 }
 
 .pill.green{
   background:#e8f6ee;
-  color:var(--green)
+  color:var(--green);
 }
 
 .pill.orange{
   background:#fff4df;
-  color:var(--orange)
+  color:var(--orange);
 }
 
 .trial-info{
   margin-top:8px;
   font-size:13px;
-  line-height:1.5
+  line-height:1.5;
 }
 
 .plan-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:14px
+  gap:14px;
 }
 
 .plan{
-  position:relative
+  position:relative;
 }
 
 .plan.featured{
-  border:2px solid var(--blue)
+  border:2px solid var(--blue);
 }
 
 .plan h3{
-  margin:0 0 5px
+  margin:0 0 5px;
 }
 
 .price{
   font-size:30px;
   font-weight:750;
-  margin:12px 0
+  margin:12px 0;
 }
 
 .plan ul{
   padding-left:18px;
   color:#515154;
   line-height:1.9;
-  font-size:14px
+  font-size:14px;
 }
 
 .plan button{
   width:100%;
-  margin-top:10px
+  margin-top:10px;
 }
 
 .form{
   display:grid;
-  gap:10px
+  gap:10px;
 }
 
 .form input{
   padding:12px 13px;
   border:1px solid #d2d2d7;
-  border-radius:11px
+  border-radius:11px;
 }
 
 .message{
   font-size:13px;
-  min-height:20px
+  min-height:20px;
 }
 
 .success{
-  color:var(--green)
+  color:var(--green);
 }
 
 .error{
-  color:var(--red)
-}
-
-.loading{
-  color:var(--muted);
-  padding:10px 0
+  color:var(--red);
 }
 
 .empty{
   color:var(--muted);
-  padding:10px 0
+  padding:10px 0;
 }
 
 .error-card{
@@ -295,45 +291,47 @@ main{
   color:var(--red);
   border-radius:16px;
   padding:15px;
-  margin-bottom:15px
+  margin-bottom:15px;
 }
 
 @media(max-width:900px){
+
   .layout{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .sidebar{
     position:static;
     display:flex;
-    overflow:auto
+    overflow:auto;
   }
 
   .tab{
     white-space:nowrap;
-    width:auto
+    width:auto;
   }
 
   .grid{
-    grid-template-columns:repeat(2,1fr)
+    grid-template-columns:repeat(2,1fr);
   }
 
   .plan-grid{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 }
 
 @media(max-width:600px){
+
   .grid{
-    grid-template-columns:1fr 1fr
+    grid-template-columns:1fr 1fr;
   }
 
   .hero h1{
-    font-size:36px
+    font-size:36px;
   }
 
   .actions span{
-    display:none
+    display:none;
   }
 }
 </style>
@@ -342,14 +340,28 @@ main{
 <body>
 
 <nav class="nav">
+
   <div class="navin">
-    <div class="brand">✦ LectureAI</div>
+
+    <div class="brand">
+      ✦ LectureAI
+    </div>
 
     <div class="actions">
+
       <span id="email" class="muted"></span>
-      <button id="logout" class="btn outline">Log out</button>
+
+      <button
+        id="logout"
+        class="btn outline"
+      >
+        Log out
+      </button>
+
     </div>
+
   </div>
+
 </nav>
 
 
@@ -357,23 +369,38 @@ main{
 
   <aside class="sidebar">
 
-    <button class="tab active" data-tab="overview">
+    <button
+      class="tab active"
+      data-tab="overview"
+    >
       Overview
     </button>
 
-    <button class="tab" data-tab="lectures">
+    <button
+      class="tab"
+      data-tab="lectures"
+    >
       My lectures
     </button>
 
-    <button class="tab" data-tab="plans">
+    <button
+      class="tab"
+      data-tab="plans"
+    >
       Plan & billing
     </button>
 
-    <button class="tab" data-tab="invite">
+    <button
+      class="tab"
+      data-tab="invite"
+    >
       Beta invite
     </button>
 
-    <button class="tab" data-tab="account">
+    <button
+      class="tab"
+      data-tab="account"
+    >
       Account
     </button>
 
@@ -384,7 +411,10 @@ main{
 
     <!-- OVERVIEW -->
 
-    <section id="overview" class="panel">
+    <section
+      id="overview"
+      class="panel"
+    >
 
       <div class="hero">
 
@@ -457,7 +487,10 @@ main{
             —
           </strong>
 
-          <div id="trialInfo" class="trial-info muted"></div>
+          <div
+            id="trialInfo"
+            class="trial-info muted"
+          ></div>
 
         </div>
 
@@ -474,7 +507,10 @@ main{
           <i id="usageBar"></i>
         </div>
 
-        <div id="usageText" class="muted">
+        <div
+          id="usageText"
+          class="muted"
+        >
           0 / 60 minutes
         </div>
 
@@ -488,9 +524,11 @@ main{
         </h2>
 
         <div id="recent">
+
           <p class="empty">
             No saved lectures yet.
           </p>
+
         </div>
 
       </div>
@@ -498,9 +536,13 @@ main{
     </section>
 
 
-    <!-- LECTURES -->
+    <!-- MY LECTURES -->
 
-    <section id="lectures" class="panel" hidden>
+    <section
+      id="lectures"
+      class="panel"
+      hidden
+    >
 
       <div class="hero">
 
@@ -522,9 +564,11 @@ main{
       <div class="card">
 
         <div id="allLectures">
+
           <p class="empty">
             No lectures saved yet.
           </p>
+
         </div>
 
       </div>
@@ -532,9 +576,13 @@ main{
     </section>
 
 
-    <!-- PLANS -->
+    <!-- PLAN -->
 
-    <section id="plans" class="panel" hidden>
+    <section
+      id="plans"
+      class="panel"
+      hidden
+    >
 
       <div class="hero">
 
@@ -547,13 +595,14 @@ main{
         </h1>
 
         <p class="muted">
-          Billing is ready to connect. Paid checkout requires your payment provider keys before real charges can be enabled.
+          Choose the plan that fits your study needs.
         </p>
 
       </div>
 
 
       <div class="plan-grid">
+
 
         <div class="card plan">
 
@@ -562,18 +611,35 @@ main{
           </h3>
 
           <div class="price">
-            A$0 <small>/ month</small>
+            A$0
+            <small>/ month</small>
           </div>
 
           <ul>
-            <li>60 minutes / month</li>
-            <li>Basic translation</li>
-            <li>Lecture history</li>
-            <li>Basic study tools</li>
+
+            <li>
+              60 minutes / month
+            </li>
+
+            <li>
+              Basic translation
+            </li>
+
+            <li>
+              Lecture history
+            </li>
+
+            <li>
+              Basic study tools
+            </li>
+
           </ul>
 
-          <button class="btn outline" disabled>
-            Current plan
+          <button
+            class="btn outline"
+            disabled
+          >
+            Free plan
           </button>
 
         </div>
@@ -586,19 +652,42 @@ main{
           </h3>
 
           <div class="price">
-            A$12.99 <small>/ month</small>
+            A$12.99
+            <small>/ month</small>
           </div>
 
           <ul>
-            <li>20 hours / month</li>
-            <li>Real-time translation</li>
-            <li>AI summaries</li>
-            <li>AI quizzes</li>
-            <li>Technical vocabulary</li>
-            <li>PDF study packs</li>
+
+            <li>
+              20 hours / month
+            </li>
+
+            <li>
+              Real-time translation
+            </li>
+
+            <li>
+              AI summaries
+            </li>
+
+            <li>
+              AI quizzes
+            </li>
+
+            <li>
+              Technical vocabulary
+            </li>
+
+            <li>
+              PDF study packs
+            </li>
+
           </ul>
 
-          <button class="btn blue" onclick="alert('Student checkout will be enabled after Stripe/payment setup.')">
+          <button
+            class="btn blue"
+            onclick="alert('Student checkout will be connected later.')"
+          >
             Choose Student
           </button>
 
@@ -612,30 +701,52 @@ main{
           </h3>
 
           <div class="price">
-            A$19.99 <small>/ month</small>
+            A$19.99
+            <small>/ month</small>
           </div>
 
           <ul>
-            <li>50 hours / month</li>
-            <li>Higher AI limits</li>
-            <li>Advanced study packs</li>
-            <li>Priority processing</li>
+
+            <li>
+              50 hours / month
+            </li>
+
+            <li>
+              Higher AI limits
+            </li>
+
+            <li>
+              Advanced study packs
+            </li>
+
+            <li>
+              Priority processing
+            </li>
+
           </ul>
 
-          <button class="btn outline" onclick="alert('Pro checkout will be enabled after Stripe/payment setup.')">
+          <button
+            class="btn outline"
+            onclick="alert('Pro checkout will be connected later.')"
+          >
             Choose Pro
           </button>
 
         </div>
+
 
       </div>
 
     </section>
 
 
-    <!-- INVITE -->
+    <!-- BETA INVITE -->
 
-    <section id="invite" class="panel" hidden>
+    <section
+      id="invite"
+      class="panel"
+      hidden
+    >
 
       <div class="hero">
 
@@ -684,7 +795,11 @@ main{
 
     <!-- ACCOUNT -->
 
-    <section id="account" class="panel" hidden>
+    <section
+      id="account"
+      class="panel"
+      hidden
+    >
 
       <div class="hero">
 
@@ -704,6 +819,7 @@ main{
         <div class="form">
 
           <label>
+
             Display name
 
             <input
@@ -716,6 +832,7 @@ main{
 
 
           <label>
+
             Email
 
             <input
@@ -778,98 +895,131 @@ main{
 
 <script>
 
-const sb = window.supabase.createClient(
-  window.LECTUREAI_SUPABASE_URL,
-  window.LECTUREAI_SUPABASE_KEY,
-  {
-    auth:{
-      persistSession:true,
-      autoRefreshToken:true,
-      detectSessionInUrl:true
+const sb =
+  window.supabase.createClient(
+    window.LECTUREAI_SUPABASE_URL,
+    window.LECTUREAI_SUPABASE_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true
+      }
     }
-  }
-);
+  );
 
 
 let session = null;
 let profile = null;
 
 
-/*
-  Monthly limits
-*/
+/* =========================
+   PLAN LIMITS
+========================= */
+
 const planLimits = {
+
   free:60,
+
   student:1200,
+
   pro:3000
+
 };
 
 
-/*
-  Escape HTML
-*/
-function esc(v){
+/* =========================
+   ESCAPE HTML
+========================= */
 
-  return String(v ?? "")
-    .replace(/[&<>"']/g,c=>({
+function esc(value){
 
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#39;"
+  return String(value ?? "")
+    .replace(/[&<>"']/g,function(c){
 
-    }[c]));
+      return {
 
-}
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
 
+      }[c];
 
-/*
-  Format plan name
-*/
-function prettyPlan(p){
-
-  return (p || "free")
-    .replace(/^./,x=>x.toUpperCase());
+    });
 
 }
 
 
-/*
-  Message helper
-*/
-function setMsg(id,text,ok=false){
+/* =========================
+   PLAN NAME
+========================= */
 
-  const e = document.getElementById(id);
+function prettyPlan(plan){
 
-  e.textContent = text;
+  return (plan || "free")
+    .replace(
+      /^./,
+      function(x){
+        return x.toUpperCase();
+      }
+    );
 
-  e.className =
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function setMsg(
+  id,
+  text,
+  ok=false
+){
+
+  const element =
+    document.getElementById(id);
+
+  element.textContent = text;
+
+  element.className =
     "message " +
-    (ok ? "success" : "error");
+    (
+      ok
+      ? "success"
+      : "error"
+    );
 
 }
 
 
-/*
-  Navigation
-*/
+/* =========================
+   NAVIGATION
+========================= */
+
 function switchTab(name){
 
   document
     .querySelectorAll(".tab")
-    .forEach(x=>{
-      x.classList.toggle(
+    .forEach(function(button){
+
+      button.classList.toggle(
         "active",
-        x.dataset.tab === name
+        button.dataset.tab === name
       );
+
     });
 
 
   document
     .querySelectorAll(".panel")
-    .forEach(x=>{
-      x.hidden = x.id !== name;
+    .forEach(function(panel){
+
+      panel.hidden =
+        panel.id !== name;
+
     });
 
 }
@@ -877,131 +1027,195 @@ function switchTab(name){
 
 document
   .querySelectorAll(".tab")
-  .forEach(x=>{
-    x.onclick = ()=>{
-      switchTab(x.dataset.tab);
+  .forEach(function(button){
+
+    button.onclick = function(){
+
+      switchTab(
+        button.dataset.tab
+      );
+
     };
+
   });
 
 
-/*
-  Calculate trial status
-*/
-function getTrialStatus(trialEndsAt){
+/* =========================
+   TRIAL STATUS
+========================= */
+
+function getTrialStatus(
+  trialEndsAt
+){
 
   if(!trialEndsAt){
 
     return {
+
       active:false,
+
       expired:false,
+
       days:0
+
     };
 
   }
 
 
-  const end = new Date(trialEndsAt);
-  const now = new Date();
+  const end =
+    new Date(trialEndsAt);
 
-  const diff = end.getTime() - now.getTime();
+  const now =
+    new Date();
 
-  const days = Math.ceil(
-    diff / (1000 * 60 * 60 * 24)
-  );
+  const diff =
+    end.getTime() -
+    now.getTime();
+
+  const days =
+    Math.ceil(
+      diff /
+      (
+        1000 *
+        60 *
+        60 *
+        24
+      )
+    );
 
 
   return {
+
     active:days > 0,
+
     expired:days <= 0,
+
     days
+
   };
 
 }
 
 
-/*
-  Render trial information
-*/
-function renderTrial(plan,trialEndsAt){
+/* =========================
+   RENDER TRIAL
+========================= */
 
-  const trialEl =
-    document.getElementById("trial");
+function renderTrial(
+  plan,
+  trialEndsAt
+){
 
-  const infoEl =
-    document.getElementById("trialInfo");
+  const trialElement =
+    document.getElementById(
+      "trial"
+    );
+
+  const infoElement =
+    document.getElementById(
+      "trialInfo"
+    );
 
 
-  if(plan !== "student" || !trialEndsAt){
+  if(
+    plan !== "student" ||
+    !trialEndsAt
+  ){
 
-    trialEl.textContent = "—";
-    infoEl.textContent = "";
+    trialElement.textContent =
+      "—";
+
+    infoElement.textContent =
+      "";
 
     return;
+
   }
 
 
   const status =
-    getTrialStatus(trialEndsAt);
+    getTrialStatus(
+      trialEndsAt
+    );
 
 
   const date =
-    new Date(trialEndsAt)
-      .toLocaleDateString();
+    new Date(
+      trialEndsAt
+    ).toLocaleDateString();
 
 
   if(status.active){
 
-    trialEl.textContent =
-      `${status.days} day${status.days === 1 ? "" : "s"}`;
+    trialElement.textContent =
+      `${status.days} day${
+        status.days === 1
+        ? ""
+        : "s"
+      }`;
 
 
-    infoEl.innerHTML =
-      `<span class="pill green">Active</span>
-       <br>
-       Ends ${esc(date)}`;
+    infoElement.innerHTML =
 
-  }else{
+      `<span class="pill green">
+        Active
+      </span>
+      <br>
+      Ends ${esc(date)}`;
 
-    trialEl.textContent =
+  }
+
+  else{
+
+    trialElement.textContent =
       "Expired";
 
 
-    infoEl.innerHTML =
-      `<span class="pill orange">Expired</span>
-       <br>
-       Ended ${esc(date)}`;
+    infoElement.innerHTML =
+
+      `<span class="pill orange">
+        Expired
+      </span>
+      <br>
+      Ended ${esc(date)}`;
 
   }
 
 }
 
 
-/*
-  Load dashboard
-*/
+/* =========================
+   LOAD DASHBOARD
+========================= */
+
 async function load(){
 
   try{
 
-    document.getElementById("loadError").innerHTML = "";
+    document
+      .getElementById(
+        "loadError"
+      )
+      .innerHTML = "";
 
 
-    /*
-      Get current session
-    */
-    const r =
+    /* SESSION */
+
+    const sessionResult =
       await sb.auth.getSession();
 
 
     session =
-      r.data.session;
+      sessionResult.data.session;
 
 
     if(!session){
 
-      location.href="/";
+      location.href = "/";
 
       return;
+
     }
 
 
@@ -1009,45 +1223,52 @@ async function load(){
       session.user;
 
 
-    /*
-      Basic account information
-    */
-    document.getElementById("email")
+    /* EMAIL */
+
+    document
+      .getElementById("email")
       .textContent =
       user.email || "";
 
 
-    document.getElementById("accountEmail")
+    document
+      .getElementById(
+        "accountEmail"
+      )
       .value =
       user.email || "";
 
 
-    /*
-      Get profile
-    */
-    const p =
+    /* PROFILE */
+
+    const profileResult =
       await sb
         .from("profiles")
         .select(
           "display_name,plan,trial_ends_at"
         )
-        .eq("id",user.id)
+        .eq(
+          "id",
+          user.id
+        )
         .maybeSingle();
 
 
-    if(p.error){
+    if(profileResult.error){
 
-      throw p.error;
+      throw profileResult.error;
 
     }
 
 
     profile =
-      p.data || {
+      profileResult.data || {
 
         display_name:
-          user.user_metadata?.display_name ||
-          user.email?.split("@")[0] ||
+          user.user_metadata
+            ?.display_name ||
+          user.email
+            ?.split("@")[0] ||
           "Student",
 
         plan:"free",
@@ -1061,75 +1282,83 @@ async function load(){
       profile.plan || "free";
 
 
-    /*
-      Welcome
-    */
-    document.getElementById("welcome")
+    /* WELCOME */
+
+    document
+      .getElementById("welcome")
       .textContent =
       `Welcome back, ${
         profile.display_name ||
-        user.email?.split("@")[0] ||
+        user.email
+          ?.split("@")[0] ||
         "Student"
       }.`;
 
 
+    /* PLAN */
 
-    /*
-      Plan
-    */
-    document.getElementById("plan")
+    document
+      .getElementById("plan")
       .textContent =
       prettyPlan(plan);
 
 
-    /*
-      Account name
-    */
-    document.getElementById("displayName")
+    /* DISPLAY NAME */
+
+    document
+      .getElementById(
+        "displayName"
+      )
       .value =
       profile.display_name || "";
 
 
-    /*
-      Trial
-    */
+    /* TRIAL */
+
     renderTrial(
       plan,
       profile.trial_ends_at
     );
 
 
-    /*
-      Current month
-    */
+    /* CURRENT MONTH */
+
     const month =
       new Date();
-
 
     month.setDate(1);
 
 
     const monthStart =
-      month.toISOString().slice(0,10);
+      month
+        .toISOString()
+        .slice(0,10);
 
 
-    /*
-      Usage
-    */
-    const usage =
+    /* USAGE */
+
+    const usageResult =
       await sb
         .from("usage_monthly")
-        .select("minutes_used")
-        .eq("user_id",user.id)
-        .eq("month_start",monthStart)
+        .select(
+          "minutes_used"
+        )
+        .eq(
+          "user_id",
+          user.id
+        )
+        .eq(
+          "month_start",
+          monthStart
+        )
         .maybeSingle();
 
 
-    if(usage.error){
+    if(usageResult.error){
 
       console.warn(
         "Usage query:",
-        usage.error
+        usageResult.error
       );
 
     }
@@ -1137,7 +1366,8 @@ async function load(){
 
     const used =
       Number(
-        usage.data?.minutes_used || 0
+        usageResult.data
+          ?.minutes_used || 0
       );
 
 
@@ -1145,17 +1375,26 @@ async function load(){
       planLimits[plan] || 60;
 
 
-    document.getElementById("minutes")
+    document
+      .getElementById(
+        "minutes"
+      )
       .textContent =
       used;
 
 
-    document.getElementById("usageText")
+    document
+      .getElementById(
+        "usageText"
+      )
       .textContent =
       `${used} / ${limit} minutes`;
 
 
-    document.getElementById("usageBar")
+    document
+      .getElementById(
+        "usageBar"
+      )
       .style.width =
       Math.min(
         100,
@@ -1163,37 +1402,49 @@ async function load(){
       ) + "%";
 
 
-    /*
-      IMPORTANT:
-      Only load lectures belonging
-      to the current user.
-    */
-    const lec =
+    /* =========================
+       LECTURES
+
+       IMPORTANT:
+       No duration_minutes
+       because that column
+       does not exist.
+    ========================= */
+
+    const lecturesResult =
       await sb
         .from("lectures")
         .select(
-          "id,title,course,created_at,duration_minutes"
+          "id,title,course,created_at"
         )
-        .eq("user_id",user.id)
+        .eq(
+          "user_id",
+          user.id
+        )
         .order(
           "created_at",
-          {ascending:false}
+          {
+            ascending:false
+          }
         )
         .limit(50);
 
 
-    if(lec.error){
+    if(lecturesResult.error){
 
-      throw lec.error;
+      throw lecturesResult.error;
 
     }
 
 
     const rows =
-      lec.data || [];
+      lecturesResult.data || [];
 
 
-    document.getElementById("lectureCount")
+    document
+      .getElementById(
+        "lectureCount"
+      )
       .textContent =
       rows.length;
 
@@ -1201,16 +1452,17 @@ async function load(){
     renderLectures(rows);
 
 
-    /*
-      Create monthly usage row
-      if it does not exist.
-    */
-    const upsert =
+    /* =========================
+       CREATE MONTHLY USAGE ROW
+    ========================= */
+
+    const usageUpsert =
       await sb
         .from("usage_monthly")
         .upsert(
           {
             user_id:user.id,
+
             month_start:monthStart
           },
           {
@@ -1220,16 +1472,18 @@ async function load(){
         );
 
 
-    if(upsert.error){
+    if(usageUpsert.error){
 
       console.warn(
         "Usage upsert:",
-        upsert.error
+        usageUpsert.error
       );
 
     }
 
-  }catch(error){
+  }
+
+  catch(error){
 
     console.error(
       "Dashboard error:",
@@ -1237,11 +1491,17 @@ async function load(){
     );
 
 
-    document.getElementById("loadError")
+    document
+      .getElementById(
+        "loadError"
+      )
       .innerHTML =
+
       `<div class="error-card">
         Unable to load some account information.
-        ${esc(error?.message || "")}
+        ${esc(
+          error?.message || ""
+        )}
       </div>`;
 
   }
@@ -1249,126 +1509,161 @@ async function load(){
 }
 
 
-/*
-  Render lectures
-*/
+/* =========================
+   RENDER LECTURES
+========================= */
+
 function renderLectures(rows){
 
   if(!rows.length){
 
     const empty =
-      "<p class='empty'>No lectures saved yet.</p>";
+      "<p class='empty'>No saved lectures yet.</p>";
 
-    document.getElementById("recent")
+
+    document
+      .getElementById(
+        "recent"
+      )
       .innerHTML =
       empty;
 
-    document.getElementById("allLectures")
+
+    document
+      .getElementById(
+        "allLectures"
+      )
       .innerHTML =
       empty;
+
 
     return;
+
   }
 
 
   const html =
     rows
-      .map(x=>{
+      .map(function(row){
 
         const title =
           esc(
-            x.title ||
+            row.title ||
             "Untitled lecture"
           );
 
 
         const course =
           esc(
-            x.course ||
+            row.course ||
             "General"
           );
 
 
-        const duration =
-          Number(
-            x.duration_minutes || 0
-          );
-
-
         const date =
-          x.created_at
+          row.created_at
             ? new Date(
-                x.created_at
+                row.created_at
               ).toLocaleDateString()
             : "";
 
 
         return `
+
           <div class="row">
 
             <div>
 
-              <b>${title}</b>
+              <b>
+                ${title}
+              </b>
 
               <div class="muted">
+
                 ${course}
-                ·
-                ${duration} min
-                ${date ? " · " + date : ""}
+
+                ${
+                  date
+                  ? " · " + date
+                  : ""
+                }
+
               </div>
 
             </div>
 
+
             <span class="pill green">
+
               Saved
+
             </span>
 
           </div>
+
         `;
 
       })
       .join("");
 
 
-  document.getElementById("recent")
+  document
+    .getElementById(
+      "recent"
+    )
     .innerHTML =
     html;
 
 
-  document.getElementById("allLectures")
+  document
+    .getElementById(
+      "allLectures"
+    )
     .innerHTML =
     html;
 
 }
 
 
-/*
-  Logout
-*/
-document.getElementById("logout")
+/* =========================
+   LOGOUT
+========================= */
+
+document
+  .getElementById("logout")
   .onclick =
-  async()=>{
+  async function(){
 
     await sb.auth.signOut();
 
-    location.href="/";
+    location.href = "/";
 
   };
 
 
-/*
-  Save profile
-*/
-document.getElementById("saveProfile")
+/* =========================
+   SAVE PROFILE
+========================= */
+
+document
+  .getElementById(
+    "saveProfile"
+  )
   .onclick =
-  async()=>{
+  async function(){
 
-    if(!session) return;
+    if(!session){
+
+      return;
+
+    }
 
 
-    const display_name =
+    const displayName =
       document
-        .getElementById("displayName")
+        .getElementById(
+          "displayName"
+        )
         .value
         .trim();
 
@@ -1377,7 +1672,10 @@ document.getElementById("saveProfile")
       await sb
         .from("profiles")
         .update({
-          display_name
+
+          display_name:
+            displayName
+
         })
         .eq(
           "id",
@@ -1386,21 +1684,30 @@ document.getElementById("saveProfile")
 
 
     setMsg(
+
       "profileMsg",
+
       result.error
         ? result.error.message
         : "Profile updated.",
+
       !result.error
+
     );
 
 
     if(!result.error){
 
-      document.getElementById("welcome")
+      document
+        .getElementById(
+          "welcome"
+        )
         .textContent =
+
         `Welcome back, ${
-          display_name ||
-          session.user.email?.split("@")[0]
+          displayName ||
+          session.user.email
+            ?.split("@")[0]
         }.`;
 
     }
@@ -1408,14 +1715,22 @@ document.getElementById("saveProfile")
   };
 
 
-/*
-  Password reset
-*/
-document.getElementById("resetBtn")
-  .onclick =
-  async()=>{
+/* =========================
+   PASSWORD RESET
+========================= */
 
-    if(!session) return;
+document
+  .getElementById(
+    "resetBtn"
+  )
+  .onclick =
+  async function(){
+
+    if(!session){
+
+      return;
+
+    }
 
 
     const result =
@@ -1424,34 +1739,46 @@ document.getElementById("resetBtn")
         .resetPasswordForEmail(
           session.user.email,
           {
+
             redirectTo:
               location.origin +
               "/reset-password.html"
+
           }
         );
 
 
     setMsg(
+
       "resetMsg",
+
       result.error
         ? result.error.message
         : "If this email is eligible, a reset email has been sent.",
+
       !result.error
+
     );
 
   };
 
 
-/*
-  Invite code
-*/
-document.getElementById("redeem")
+/* =========================
+   REDEEM INVITE
+========================= */
+
+document
+  .getElementById(
+    "redeem"
+  )
   .onclick =
-  async()=>{
+  async function(){
 
     const code =
       document
-        .getElementById("inviteCode")
+        .getElementById(
+          "inviteCode"
+        )
         .value
         .trim();
 
@@ -1496,9 +1823,12 @@ document.getElementById("redeem")
     if(!data?.success){
 
       setMsg(
+
         "inviteMsg",
+
         data?.message ||
         "Invalid or expired code."
+
       );
 
       return;
@@ -1507,7 +1837,9 @@ document.getElementById("redeem")
 
 
     setMsg(
+
       "inviteMsg",
+
       `Success. Your ${
         prettyPlan(data.plan)
       } trial is active until ${
@@ -1515,7 +1847,9 @@ document.getElementById("redeem")
           data.trial_ends_at
         ).toLocaleDateString()
       }.`,
+
       true
+
     );
 
 
@@ -1524,9 +1858,10 @@ document.getElementById("redeem")
   };
 
 
-/*
-  Start
-*/
+/* =========================
+   START
+========================= */
+
 load();
 
 </script>
